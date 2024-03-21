@@ -1,0 +1,48 @@
+/* Base Styles (start) */
+* {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, Arial, sans-serif;
+  background-color: HotPink;  /* default background color when debugging */
+  background-color: rgb(244, 237, 241);
+}
+li {
+  list-style: none;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+/* Base Styles (end) */
+
+#energy-balance-logo {
+  height: auto;
+  width: auto;
+}
+
+#energy-balance-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+}   
+
+/*
+#energy-balance-intro {
+  height: auto;
+  width: auto;
+}
+*/
+
+.ui-block-b #energy-balance-intro {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+}
