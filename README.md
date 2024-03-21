@@ -1,2 +1,2 @@
 # DEV209Proj1SPA
-My Engery Balance is a single page application (SPA) built using jQuery Mobile, JavaScript, &amp; HTML. This manual entry log helps you keep track of daily energy intake and energy expenditure.
+My Energy Balance is a single page application (SPA) built using jQuery Mobile, JavaScript, & HTML. This manual entry log helps you keep track of your energy intake (the food you consume) and energy expenditure (your level of physical activity) on a daily basis. Readily see if you consumed more calories than you burned each day.
