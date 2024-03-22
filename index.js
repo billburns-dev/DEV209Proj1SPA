@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
     selectedPal = document.getElementById("selected-pal").value;
 
     // calories consumed on entry date; categorized and entered by user; protein (col 1|row 2), carbohydrates (col 2|row 2), fat (col 3|row 2)
-    let enteredProteinCalories = document.getElementById("entered-protein-calories").value;
-    let enteredCarboCalories = document.getElementById("entered-carbo-calories").value;
-    let enteredFatCalories = document.getElementById("entered-fat-calories").value;
+    let enteredProteinCalories = parseInt(document.getElementById("entered-protein-calories").value);
+    let enteredCarboCalories = parseInt(document.getElementById("entered-carbo-calories").value);
+    let enteredFatCalories = parseInt(document.getElementById("entered-fat-calories").value);
     
     // selected gender (col 1|row 3)
     selectedGender = document.getElementById("selected-gender").value;
@@ -61,7 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // calculate TDCI as protein calories + carbohydrate calories + fat calories
     let calculatedTdci = calculateTdci(enteredProteinCalories, enteredCarboCalories, enteredFatCalories);
-    
+console.log("after function call to calculateTdci; before return: calculatedTdci = ", calculatedTdci);
+
     // calculate DEBD as TDCI - TDEE
     let calculatedDebd = calculateDebd(calculatedTdci, calculatedTdee);
     
@@ -95,24 +96,23 @@ console.log("eBA: inside 'save-entry' click; after alert()", energyBalanceArray)
   // on "save-entry" click, store app data (user input & calculated) ******************** END
 
 console.log("eBA: outside 'save-entry' click", energyBalanceArray);
-
-alert(`outside & before event listen for display-log-link click`);
-
-  // when "Display Log" is clicked in any navbar the building of dynamic grids begins *** START  
-  document.getElementById("display-log-link").addEventListener("click", function() {
-
-alert(`inside event listen for display-log-link click`);
-   
-console.log("'display-log-link' link clicked");
-
-    displayLogContent();
+  
+  // detect link click event via "class"; when detected dynamic grid build starts ******* START
+  let elementsWithTheClass = document.querySelectorAll(".display-log-link");
+  elementsWithTheClass.forEach(function(element) {
+    element.addEventListener("click", function(event) {
+      
+      console.log("link with class of 'display-log-link' clicked");
+      
+      displayLogContent();
+      
+    });
   });
-  // when "Display Log" is clicked in any navbar the building of dynamic grids begins *** END
-
-alert(`outside & after event listen for display-log-link click`);
+  // detect link click event via "class"; when detected dynamic grid build starts ******* END
 
 });  
 // wait for "DOMContentLoaded" event **************************************************** END
+
 
 console.log("hey I am outside 'wait for DOM load'");
 console.log("eBA after DOM loaded (line ??):", energyBalanceArray);
@@ -121,8 +121,6 @@ console.log("eBA after DOM loaded (line ??):", energyBalanceArray);
 function displayLogContent() {
 
   document.getElementById("log-grid").innerHTML = "";
-
-  
   let logGrid = document.getElementById("log-grid");
   
   // create column header row (grid row 1 | col 1-4)
@@ -142,10 +140,19 @@ console.log("eBA after header row appended & before 'energyBalanceArray.forEach'
   energyBalanceArray.forEach(function(ebaObject) {
     let dataRow = document.createElement('div');
    
-console.log("this is line 147");
-console.log("dataRow at line 148: ", dataRow);
-
     dataRow.className = 'ui-grid-c';
+
+
+console.log("inside'energyBalanceArray.forEach'; before objects of ebaObject are used: energyBalanceArray[0].tdee = ", energyBalanceArray[0].tdee);
+console.log("inside'energyBalanceArray.forEach'; before objects of ebaObject are used: energyBalanceArray[0].tdee.value = ", energyBalanceArray[0].tdee.value);
+
+console.log("inside'energyBalanceArray.forEach'; before objects of ebaObject are used: energyBalanceArray[0].tdci = ", energyBalanceArray[0].tdci);
+console.log("inside'energyBalanceArray.forEach'; before objects of ebaObject are used: energyBalanceArray[0].tdci.value = ", energyBalanceArray[0].tdci.value);
+
+console.log("inside'energyBalanceArray.forEach'; before objects of ebaObject are used: ebaObject = ", ebaObject);
+console.log("inside'energyBalanceArray.forEach'; before objects of ebaObject are used: ebaObject.tdic = ", ebaObject.tdic);
+console.log("inside'energyBalanceArray.forEach'; before objects of ebaObject are used: ebaObject.tdee = ", ebaObject.tdee);
+
   
     // Create a link with entryDate as parameter
     let link = document.createElement('a');
@@ -154,23 +161,28 @@ console.log("dataRow at line 148: ", dataRow);
     link.setAttribute('data-entrydate', ebaObject.entryDate);
     link.textContent = ebaObject.entryDate;
 
+console.log("inside'energyBalanceArray.forEach'; after link created before link appended: link = ", link);
+
     // create column cell for entryDate; object value & link to #display-entry
     let cellA = document.createElement('div');
     cellA.className = 'ui-block-a';
     cellA.appendChild(link);
     
     // create column cell for tdee; object value
-    var cellB = document.createElement('div');
+    let cellB = document.createElement('div');
     cellB.className = 'ui-block-b';
     cellB.textContent = ebaObject.tdee;
     
     // create column cell for tdic; object value
-    var cellC = document.createElement('div');
+    let cellC = document.createElement('div');
     cellC.className = 'ui-block-c';
+    
+console.log("inside'energyBalanceArray.forEach'; inside create tdic cell: ebaObject.tdic = ", ebaObject.tdic);
+
     cellC.textContent = ebaObject.tdic;
 
     // create column cell for debd; object value
-    var cellD = document.createElement('div');
+    let cellD = document.createElement('div');
     cellD.className = 'ui-block-d';
     cellD.textContent = ebaObject.debd;
 
@@ -182,17 +194,27 @@ console.log("dataRow at line 148: ", dataRow);
     
     // append data row
     logGrid.appendChild(dataRow);
+    
+    console.log("inside but bottom of 'energyBalanceArray.forEach': link = ", link);
+
+    
   });
   // Iterate through energyBalanceArray; create new row & append ************** END
+
+
+
 
 /*
   // trap "entryDate" click on Display Log page ******************************* START
   link.addEventListener('click', function(event) {
+    
+console.log("eBA after header row appended & before 'energyBalanceArray.forEach' : ", energyBalanceArray);
+
     localStorage.setItem("entryDate", ebaObject.entryDate);
     displayEntryDetails(); // redirect to the "Display Specified Log Entry" page 
   });
   // trap "entryDate" click on Display Log page ******************************* END
-*/
+ */
  
 }
 // function displayLogContent *********************************************************** END
@@ -237,7 +259,11 @@ function calculateBmr(gender, age, height, weight) {
 // function calculateTdci *************************************************************** START
 // calculate TDCI as protein calories + carbohydrate calories + fat calories
 function calculateTdci(proteinCalories, carboCalories, fatCalories) {
-  let tdci = parseInt(proteinCalories) + parseInt(carboCalories) + parseInt(fatCalories);
+  
+  let tdci = proteinCalories + carboCalories + fatCalories;
+console.log("inside calculateTdci function; before return: tdci = ", tdci);
+
+  // let tdci = parseInt(proteinCalories) + parseInt(carboCalories) + parseInt(fatCalories);
   return tdci;
 }
 // function calculateTdci *************************************************************** END

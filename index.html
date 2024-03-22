@@ -40,14 +40,14 @@
     <!-- "Home Page" page ------------------------------------------------------------------------- START -->
     <div data-role="page" id="home-page">
       <!-- header ----------------------------------------------------------------------- START -->
-      <div data-role="header" data-theme='a'>
+      <div data-role="header">
         <h1>My Energy Balance</h1>
         <!-- navbar ----------------------------------------------------------- START -->
-        <div data-role="navbar" data-theme='a'>
+        <div data-role="navbar">
           <ul>
             <li><a href="#home-page">Home Page</a></li>
             <li><a href="#add-entry">Add Log Entry</a></li>
-            <li><a href="#display-log" id="display-log-link">Display Log</a></li>
+            <li><a href="#display-log" class="display-log-link">Display Log</a></li>
           </ul>
         </div>
         <!-- navbar ----------------------------------------------------------- END -->
@@ -55,9 +55,9 @@
       <!-- header ----------------------------------------------------------------------- END -->
 
       <!-- content ---------------------------------------------------------------------- START -->
-      <div data-role="content" data-theme='a'>
+      <div data-role="content">
         <!-- 2 column grid ---------------------------------------------------- START -->    
-        <div class="ui-grid-a ui-responsive">
+        <div class="ui-grid-a">
           <!-- block A (column 1/row 1)  ---------------------------- START -->    
           <div class="ui-block-a" id="energy-balance-logo"> 
             <div class="ui-bar ui-bar-a">
@@ -91,7 +91,7 @@
       <!-- content ---------------------------------------------------------------------- END -->
 
       <!-- footer ----------------------------------------------------------------------- START -->
-      <div data-role="footer" data-theme='a'>
+      <div data-role="footer">
         <h1>Copyright 2024 by Bill Burns</h1>
       </div>
       <!-- footer ----------------------------------------------------------------------- END -->
@@ -101,14 +101,14 @@
     <!-- "Log Entry Details" page ----------------------------------------------------------------- START -->
     <div data-role="page" id="display-entry">
       <!-- header ----------------------------------------------------------------------- START -->
-      <div data-role="header" data-theme='a'>
+      <div data-role="header">
         <h1>Log Entry Details</h1>
         <!-- navbar ----------------------------------------------------------- START -->
-        <div data-role="navbar" data-theme='a'>
+        <div data-role="navbar">
           <ul>
             <li><a href="#home-page">Home Page</a></li>
             <li><a href="#add-entry">Add Log Entry</a></li>
-            <li><a href="#display-log" id="display-log-link">Display Log</a></li>
+            <li><a href="#display-log" class="display-log-link">Display Log</a></li>
           </ul>
         </div>
         <!-- navbar ----------------------------------------------------------- END -->
@@ -116,7 +116,7 @@
       <!-- header ----------------------------------------------------------------------- END -->
 
       <!-- content ---------------------------------------------------------------------- START -->
-      <div data-role="content" data-theme='a'>
+      <div data-role="content">
       
           <h2>You have arrived on the Log Entry Details page</h2>
           
@@ -214,7 +214,7 @@
       <!-- content ---------------------------------------------------------------------- END -->
 
       <!-- footer ----------------------------------------------------------------------- START -->
-      <div data-role="footer" data-theme='a'>
+      <div data-role="footer">
         <h1>Copyright 2024 by Bill Burns</h1>
       </div>
       <!-- footer ----------------------------------------------------------------------- END -->
@@ -224,14 +224,14 @@
     <!-- "Log Entry" page ------------------------------------------------------------------------- START -->
     <div data-role="page" id="add-entry">
       <!-- header ----------------------------------------------------------------------- START -->
-      <div data-role="header" data-theme='a'>
+      <div data-role="header">
         <h1>Log Entry</h1>
         <!-- navbar ----------------------------------------------------------- START -->
-        <div data-role="navbar" data-theme='a'>
+        <div data-role="navbar">
           <ul>
             <li><a href="#home-page">Home Page</a></li>
             <li><a href="#add-entry">Add Log Entry</a></li>
-            <li><a href="#display-log" id="display-log-link">Display Log</a></li>
+            <li><a href="#display-log" class="display-log-link">Display Log</a></li>
           </ul>
         </div>
         <!-- navbar ----------------------------------------------------------- END -->
@@ -239,7 +239,7 @@
       <!-- header ----------------------------------------------------------------------- END -->
 
       <!-- content ---------------------------------------------------------------------- START -->    
-      <div data-role="content" data-theme='a'>
+      <div data-role="content">
       
         <!-- retrieve input data user using 3 column X 4 row grid ------------- START -->    
         <div class="ui-grid-b">
@@ -383,7 +383,7 @@
       <!-- content ---------------------------------------------------------------------- END -->      
 
       <!-- footer ----------------------------------------------------------------------- START -->    
-      <div data-role="footer" data-theme='a'>
+      <div data-role="footer">
         <h1>Copyright 2024 by Bill Burns</h1>
       </div>
       <!-- footer ----------------------------------------------------------------------- END -->    
@@ -393,14 +393,14 @@
     <!-- "Display Log" page ----------------------------------------------------------------------- START -->
     <div data-role="page" id="display-log">
       <!-- header ----------------------------------------------------------------------- START -->
-      <div data-role="header" data-theme='a'>
+      <div data-role="header">
         <h1>Your Log Entries</h1>
           <!-- navbar --------------------------------------------------------- START -->
-        <div data-role="navbar" data-theme='a'>
+        <div data-role="navbar">
           <ul>
             <li><a href="#home-page">Home Page</a></li>
             <li><a href="#add-entry">Add Log Entry</a></li>
-            <li><a href="#display-log" id="display-log-link">Display Log</a></li>
+            <li><a href="#display-log" class="display-log-link">Display Log</a></li>
           </ul>
         </div>
           <!-- navbar --------------------------------------------------------- END -->
@@ -408,8 +408,7 @@
       <!-- header ----------------------------------------------------------------------- END -->
 
       <!-- content ---------------------------------------------------------------------- START -->
-      <div data-role="content" id="display-log-content" data-theme='a'>
-        <h2>you have arrived at Display Log page</h2>
+      <div data-role="content" id="display-log-content">
         <!-- the static container for the dynamic grid ------------------------ START -->
         <div id="log-grid"></div>
         <!-- the static container for the dynamic grid ------------------------ END -->
@@ -461,7 +460,7 @@
       <!-- content ---------------------------------------------------------------------- END -->
 
       <!-- footer ----------------------------------------------------------------------- START -->   
-      <div data-role="footer" data-theme='a'>
+      <div data-role="footer">
         <h1>Copyright 2024 by Bill Burns</h1>
       </div>
       <!-- footer ----------------------------------------------------------------------- END -->    
