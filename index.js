@@ -26,21 +26,7 @@ let EnergyBalanceObject = function (pentryDate, pgender, page, pheight, pweight,
     this.ID = Math.floor(Math.random()*500) + 1;
 }
 
-/*  // push EnergyBalanceObjects into the array; *** TEMP DEBUG ***      !!!!! REMOVE BEFORE FINAL RELEASE !!!!!  
-    //                                                             ^age         ^bmr             ^proteinCalories  ^tdci
-    //                                                     ^gender |       ^weight         ^tdee |           ^fatCalories
-    //                                          ^entryDate |       |   ^height  |     ^pal |     |     ^carboCalories    ^debd
-    //                                          |          |       |   |   |    |     |    |     |     |     |     |     |
-
-energyBalanceArray.push(new EnergyBalanceObject(03/20/24, "woman", 60, 60, 130, 1231, 2.5, 3076, 1000, 1000, 1000, 3000, -76.0));
-energyBalanceArray.push(new EnergyBalanceObject(03/22/24, "woman", 60, 60, 130, 1231, 2.2, 2707, 800, 1000, 900, 2700, -7.0));
-energyBalanceArray.push(new EnergyBalanceObject(03/24/24, "woman", 60, 60, 130, 1231, 2.0, 2461, 700, 1000, 800, 2500, 39.0));
-energyBalanceArray.push(new EnergyBalanceObject(03/26/24, "man", 65, 67, 185, 1633, 2.0, 3266, 1200, 1100, 900, 3200, -66.0));
-energyBalanceArray.push(new EnergyBalanceObject(03/28/24, "man", 65, 67, 185, 1633, 2.2, 3593, 1350, 1450, 800, 3600, 7.0));
-energyBalanceArray.push(new EnergyBalanceObject(03/31/24, "man", 65, 67, 185, 1633, 2.5, 4083, 1300, 1600, 1000, 3900, -183.0));
-*/
-
-// wait for "DOMContentLoaded" event ************************************************************** START
+// wait for "DOMContentLoaded" event **************************************************** START
 document.addEventListener("DOMContentLoaded", function () {
 
   // on "save-entry" click, store app data (user input & calculated) ******************** START
@@ -110,41 +96,54 @@ console.log("eBA: inside 'save-entry' click; after alert()", energyBalanceArray)
 
 console.log("eBA: outside 'save-entry' click", energyBalanceArray);
 
-  /* displayLogContent() is called once the "Display Log" page is loaded **************** START
-  document.getElementById("display-log-content").addEventListener("pageshow", function() {
+alert(`outside & before event listen for display-log-link click`);
+
+  // when "Display Log" is clicked in any navbar the building of dynamic grids begins *** START  
+  document.getElementById("display-log-link").addEventListener("click", function() {
+
+alert(`inside event listen for display-log-link click`);
+   
+console.log("'display-log-link' link clicked");
+
     displayLogContent();
   });
-  // displayLogContent() is called once the "Display Log" page is loaded **************** END
-*/
-    displayLogContent();
+  // when "Display Log" is clicked in any navbar the building of dynamic grids begins *** END
+
+alert(`outside & after event listen for display-log-link click`);
 
 });  
-// wait for "DOMContentLoaded" event ************************************************************** END
+// wait for "DOMContentLoaded" event **************************************************** END
 
-// function displayLogContent ********************************************************************* START
+console.log("hey I am outside 'wait for DOM load'");
+console.log("eBA after DOM loaded (line ??):", energyBalanceArray);
+
+// function displayLogContent *********************************************************** START
 function displayLogContent() {
+
+  document.getElementById("log-grid").innerHTML = "";
+
   
   let logGrid = document.getElementById("log-grid");
   
-  // Clear previous grid
-  logGrid.innerHTML = '';
-
   // create column header row (grid row 1 | col 1-4)
   let headerRow = document.createElement('div');
   headerRow.className = 'ui-grid-c';
-  headerRow.innerHTML = '<div class="ui-block-a"><b>Entry Date</b></div>' +
-  '<div class="ui-block-b"><b>TDEE</b></div>' +
-  '<div class="ui-block-c"><b>TDCI</b></div>' +
-  '<div class="ui-block-d"><b>DEBD</b></div>';
+  headerRow.innerHTML = '<div class="ui-block-a"><strong>Entry Date</strong></div>' +
+  '<div class="ui-block-b"><strong>TDEE</strong></div>' +
+  '<div class="ui-block-c"><strong>TDCI</strong></div>' +
+  '<div class="ui-block-d"><strong>DEBD</strong></div>';
   
   // append newly created header row to element with id="log-grid"
   logGrid.appendChild(headerRow);
 
-  // Iterate through energyBalanceArray; create new row & append ************************ START
+console.log("eBA after header row appended & before 'energyBalanceArray.forEach' : ", energyBalanceArray);
+
+  // Iterate through energyBalanceArray; create new row & append ************** START
   energyBalanceArray.forEach(function(ebaObject) {
     let dataRow = document.createElement('div');
-    
-console.log("dataRow at line 147: ", dataRow);
+   
+console.log("this is line 147");
+console.log("dataRow at line 148: ", dataRow);
 
     dataRow.className = 'ui-grid-c';
   
@@ -155,17 +154,10 @@ console.log("dataRow at line 147: ", dataRow);
     link.setAttribute('data-entrydate', ebaObject.entryDate);
     link.textContent = ebaObject.entryDate;
 
-    // trap "entryDate" click on Display Log page ***************************** START
-    link.addEventListener('click', function(event) {
-      localStorage.setItem("entryDate", ebaObject.entryDate);
-      displayEntryDetails(ebaobj.entryDate); // redirect to the "Display Specified Log Entry" page 
-    });
-    // trap "entryDate" click on Display Log page ***************************** END
-
     // create column cell for entryDate; object value & link to #display-entry
     let cellA = document.createElement('div');
     cellA.className = 'ui-block-a';
-    cellA.appendChild(Link);
+    cellA.appendChild(link);
     
     // create column cell for tdee; object value
     var cellB = document.createElement('div');
@@ -178,31 +170,41 @@ console.log("dataRow at line 147: ", dataRow);
     cellC.textContent = ebaObject.tdic;
 
     // create column cell for debd; object value
-    var cellC = document.createElement('div');
-    cellC.className = 'ui-block-d';
-    cellC.textContent = ebaObject.debd;
+    var cellD = document.createElement('div');
+    cellD.className = 'ui-block-d';
+    cellD.textContent = ebaObject.debd;
 
     // put cells together to form row
     dataRow.appendChild(cellA);
     dataRow.appendChild(cellB);
     dataRow.appendChild(cellC);
-    dataRow.appendChild(cellC);
+    dataRow.appendChild(cellD);
     
     // append data row
     logGrid.appendChild(dataRow);
   });
-  // Iterate through energyBalanceArray; create new row & append ************************ END
-}
-// function displayLogContent ********************************************************************* END
+  // Iterate through energyBalanceArray; create new row & append ************** END
 
-// displayEntryDetails: redirect to "Display Specified Log Entry" page **************************** START
+/*
+  // trap "entryDate" click on Display Log page ******************************* START
+  link.addEventListener('click', function(event) {
+    localStorage.setItem("entryDate", ebaObject.entryDate);
+    displayEntryDetails(); // redirect to the "Display Specified Log Entry" page 
+  });
+  // trap "entryDate" click on Display Log page ******************************* END
+*/
+ 
+}
+// function displayLogContent *********************************************************** END
+
+// displayEntryDetails: redirect to "Display Specified Log Entry" page ****************** START
 function displayEntryDetails() {
   // Redirect to Display Detailed Data Page
   location.hash = "display-entry";
 }
-// displayEntryDetails: redirect to "Display Specified Log Entry" page **************************** END
+// displayEntryDetails: redirect to "Display Specified Log Entry" page ****************** END
 
-// function convertDatemmddyyyy ******************************************************************* START
+// function convertDatemmddyyyy ********************************************************* START
 // convert date format; from native system date format to mm/dd/yyyy format
 function convertDatemmddyyyy(dateObjToConvert) {
   yyyy = dateObjToConvert.getFullYear();
@@ -212,9 +214,9 @@ function convertDatemmddyyyy(dateObjToConvert) {
   if (mm < 10) mm = '0' + mm;
   return (mm + '/' + dd + '/' + yyyy);
 }
-// function convertDatemmddyyyy ******************************************************************* END
+// function convertDatemmddyyyy ********************************************************* END
 
-// function calculateBmr ************************************************************************** START
+// function calculateBmr **************************************************************** START
 /* BMR equations
    for woman:  665.00 + (4.35 × weight) + (4.7 × height) - (4.70 × age)			
    for man:    66.47 + (6.24 × weight) + (12.7 × height) - (6.75 × age)
@@ -230,28 +232,28 @@ function calculateBmr(gender, age, height, weight) {
   }
   return bmr;
 }
-// function calculateBmr ************************************************************************** END
+// function calculateBmr **************************************************************** END
 
-// function calculateTdci ************************************************************************* START
+// function calculateTdci *************************************************************** START
 // calculate TDCI as protein calories + carbohydrate calories + fat calories
 function calculateTdci(proteinCalories, carboCalories, fatCalories) {
   let tdci = parseInt(proteinCalories) + parseInt(carboCalories) + parseInt(fatCalories);
   return tdci;
 }
-// function calculateTdci ************************************************************************* END
+// function calculateTdci *************************************************************** END
 
-// function calculateTdee ************************************************************************* START
+// function calculateTdee *************************************************************** START
 // calculate TDEE as BMR x PAL
 function calculateTdee(bmr, pal) {
   let tdee = bmr * pal;
   return tdee;
 }
-// function calculateTdee ************************************************************************* END
+// function calculateTdee *************************************************************** END
 
-// function calculateDebd ************************************************************************* START
+// function calculateDebd *************************************************************** START
 // calculate DEBD as TDCI - TDEE
 function calculateDebd(tdci, tdee) {
   let debd = tdci - tdee;
   return debd;
 }
-// function calculateDebd ************************************************************************* END
+// function calculateDebd *************************************************************** END

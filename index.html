@@ -45,9 +45,9 @@
         <!-- navbar ----------------------------------------------------------- START -->
         <div data-role="navbar" data-theme='a'>
           <ul>
-            <li><a href="#home-page" class="ui-btn-active">Home Page</a></li>
+            <li><a href="#home-page">Home Page</a></li>
             <li><a href="#add-entry">Add Log Entry</a></li>
-            <li><a href="#display-log">Display Log</a></li>
+            <li><a href="#display-log" id="display-log-link">Display Log</a></li>
           </ul>
         </div>
         <!-- navbar ----------------------------------------------------------- END -->
@@ -59,16 +59,16 @@
         <!-- 2 column grid ---------------------------------------------------- START -->    
         <div class="ui-grid-a ui-responsive">
           <!-- block A (column 1/row 1)  ---------------------------- START -->    
-          <div class="ui-block-a"> 
-            <div class="ui-bar ui-bar-a" id="energy-balance-logo">
+          <div class="ui-block-a" id="energy-balance-logo"> 
+            <div class="ui-bar ui-bar-a">
               <img src="images/energy-balance-logo.png" alt="logo for My Energy Balance app">
             </div> 
           </div>
           <!-- block A (column 1/row 1)  ---------------------------- END -->
           
           <!-- block B (column 2/row 1)  ---------------------------- START -->
-          <div class="ui-block-b">
-            <div class="ui-bar ui-bar-a" id="energy-balance-intro">
+          <div class="ui-block-b" id="energy-balance-intro">
+            <div class="ui-bar ui-bar-a">
               <p>
                 My Energy Balance is your personal daily energy balance tracker.<br><br>
                 Basal Metabolic Rate (BMR)<br> 
@@ -98,7 +98,7 @@
     </div>
     <!-- "Home Page" page  ------------------------------------------------------------------------ END -->
 
-    <!-- "Log Entry Details" page ------------------------------------------------------- START -->
+    <!-- "Log Entry Details" page ----------------------------------------------------------------- START -->
     <div data-role="page" id="display-entry">
       <!-- header ----------------------------------------------------------------------- START -->
       <div data-role="header" data-theme='a'>
@@ -108,7 +108,7 @@
           <ul>
             <li><a href="#home-page">Home Page</a></li>
             <li><a href="#add-entry">Add Log Entry</a></li>
-            <li><a href="#display-log">Display Log</a></li>
+            <li><a href="#display-log" id="display-log-link">Display Log</a></li>
           </ul>
         </div>
         <!-- navbar ----------------------------------------------------------- END -->
@@ -120,8 +120,8 @@
       
           <h2>You have arrived on the Log Entry Details page</h2>
           
-        <!-- "Food & Activity" grid; 5 column x 2 row ------------------------- START -->
-        <div class="ui-grid-d ui-responsive"> 
+        <!-- "FOOD & ACTIVITY" grid; 5 column x 2 row ------------------------- START -->
+        <div class="ui-grid-d"> 
           <!-- ROW 1 - column headers ------------------------------- START -->
           <!-- date of log entry [A] (col1|row1) --------------- START -->    
           <div class="ui-block-a"> 
@@ -206,6 +206,10 @@
           <!-- PAL value [E] (col5|row2) ----------------------- END -->    
           <!-- ROW 2 - column values -------------------------------- END -->
         </div>
+        <!-- "FOOD & ACTIVITY" grid; 5 column x 2 row ------------------------- END -->
+<!--        
+        Use copy of "FOOD & ACTIVITY" grid to make "ENERGY BALANCE" & "MY PROFILE" grids
+-->
       </div>
       <!-- content ---------------------------------------------------------------------- END -->
 
@@ -226,8 +230,8 @@
         <div data-role="navbar" data-theme='a'>
           <ul>
             <li><a href="#home-page">Home Page</a></li>
-            <li><a href="#add-entry" class="ui-btn-active">Add Log Entry</a></li>
-            <li><a href="#display-log">Display Log</a></li>
+            <li><a href="#add-entry">Add Log Entry</a></li>
+            <li><a href="#display-log" id="display-log-link">Display Log</a></li>
           </ul>
         </div>
         <!-- navbar ----------------------------------------------------------- END -->
@@ -238,7 +242,7 @@
       <div data-role="content" data-theme='a'>
       
         <!-- retrieve input data user using 3 column X 4 row grid ------------- START -->    
-        <div class="ui-grid-b ui-responsive">
+        <div class="ui-grid-b">
         
           <!-- select log entry date-block A (column 1/row 1) -------- START -->    
           <div class="ui-block-a"> 
@@ -396,7 +400,7 @@
           <ul>
             <li><a href="#home-page">Home Page</a></li>
             <li><a href="#add-entry">Add Log Entry</a></li>
-            <li><a href="#display-log"class="ui-btn-active">Display Log</a></li>
+            <li><a href="#display-log" id="display-log-link">Display Log</a></li>
           </ul>
         </div>
           <!-- navbar --------------------------------------------------------- END -->
@@ -405,15 +409,17 @@
 
       <!-- content ---------------------------------------------------------------------- START -->
       <div data-role="content" id="display-log-content" data-theme='a'>
+        <h2>you have arrived at Display Log page</h2>
         <!-- the static container for the dynamic grid ------------------------ START -->
         <div id="log-grid"></div>
         <!-- the static container for the dynamic grid ------------------------ END -->
-        
-        <!-- logic for building the grid manually (obsolete) ------------- START -->
-<!-- 
-        <div class="ui-grid-c">   
-          -- Info row (row 1) ------------------------------------- START --
-          -- "info on specific log entry" [A] (col1|row1) ---- START --    
+<!--
+        <div class="ui-grid-c">
+-->
+<!--    code to manually build an info row ------------------------------- START -->
+<!--
+          <!-- Info row  ------------------------------------------------- START --
+          <!-- "info on specific log entry" [A] (col1|row1) --------- --    
           <div class="ui-block-a"> 
             <div class="ui-bar ui-bar-a">
               <p>
@@ -421,92 +427,36 @@
               </p> 
             </div> 
           </div>   
-          -- "info on specific log entry" [A] (col1|row1) ---- END --    
-          -- full name for TDEE, TDCI, DEBD [B] (col2|row1) -- START --    
+          <!-- full name for TDEE, TDCI, DEBD [B] (col2|row1) ------- --    
           <div class="ui-block-b"> 
             <div class="ui-bar ui-bar-a">
               <p>
-                <strong>TDEE</strong><br>Total daily energy expenditure<br><br><strong>TDCI</strong><br>Total Daily Caloric Intake<br><br><strong>DEBD</strong><br>Daily Energy Balance Delta<br>
+                TDEE<br>Total daily energy expenditure<br><br>TDCI<br>Total Daily Caloric Intake<br><br>DEBD<br>Daily Energy Balance Delta<br>
               </p> 
             </div> 
           </div>        
-          -- full name for TDEE, TDCI, DEBD [B] (col2|row1) -- END --    
-          -- positive DEBD [C] (col3|row1) ------------------- START --    
+          <!-- positive DEBD [C] (col3|row1) ------------------------ --    
           <div class="ui-block-c"> 
             <div class="ui-bar ui-bar-a">
               <p>
-                <strong>Positive DEBD</strong><br>A positive DEBD number indicates more calories were consumed than were expended on the associated entry date.<br>Excess/unused calories may be stored as fat.<br>
+                Positive DEBD<br>A positive DEBD number indicates more calories were consumed than were expended on the associated entry date.<br>Excess/unused calories may be stored as fat.<br>
               </p>
             </div> 
           </div>        
-          -- positive DEBD [C] (col3|row1) ------------------- END --  
-          -- negative DEBD [D] (col4|row1) ------------------- START --    
+          <!-- negative DEBD [D] (col4|row1) ------------------------ --    
           <div class="ui-block-d"> 
             <div cl ass="ui-bar ui-bar-a">
               <p>
-                <strong>Negative DEBD</strong><br>A negative DEBD number indicates more calories were expended than were consumed on the associated entry date.<br>Calories stored as fat maybe burned to compensate for energy debt.<br>
+                Negative DEBD<br>A negative DEBD number indicates more calories were expended than were consumed on the associated entry date.<br>Calories stored as fat maybe burned to compensate for energy debt.<br>
               </p>
             </div> 
           </div>        
-          -- negative DEBD [D] (col4|row1) ------------------- END --  
-          -- Info row (row 1) ------------------------------------- END --
-
-          -- ROW 2 ------------------------------------------------ START --
-          -- column heading "Entry Date" [A] (col1|row2) ----- START --    
-          <div class="ui-block-a"> 
-            <div class="ui-bar ui-bar-a">
-              <h2>
-                Entry Date
-              </h2> 
-            </div> 
-          </div>        
-          -- column heading "Entry Date" [A] (col1|row2) ----- END --
-          -- column heading "TDEE" [B] (col2|row2) ----------- START --    
-          <div class="ui-block-b"> 
-            <div class="ui-bar ui-bar-a">
-              <h2>
-                TDEE
-              </h2> 
-            </div> 
-          </div>    
-          -- column heading "TDEE" [B] (col2|row2) ----------- END --    
-          -- column heading "TDCI" [C] (col3|row2) ----------- START --    
-          <div class="ui-block-c"> 
-            <div class="ui-bar ui-bar-a">
-              <h2>
-                TDCI
-              </h2> 
-            </div> 
-          </div>
-          -- column heading "TDCI" [C] (col3|row2) ----------- END --    
-          -- column heading "DEBD" [D] (col4|row2) ----------- START --    
-          <div class="ui-block-d"> 
-            <div class="ui-bar ui-bar-a">
-              <h2>
-                DEBD
-              </h2> 
-            </div> 
-          </div>
-          -- column heading "DEBD" [D] (col4|row2) ----------- START --    
-          -- ROW 2 ------------------------------------------------ END --
-
-          -- ROW 2+N ---------------------------------------------- START --
-          -- entry date [A] (col1|row2+N) -------------------- START --
-          <div id="create-col1-cell"></div>
-          -- entry date [A] (col1|row2+N) -------------------- END --
-          -- TDEE [B] (col2|row2+N) -------------------------- START --
-          <div id="create-col2-cell"></div>
-          -- TDEE [B] (col2|row2+N) -------------------------- END --    
-          -- TDCI [C] (col3|row2+N) -------------------------- START --
-          <div id="create-col3-cell"></div>
-          -- TDCI [C] (col3|row2+N) -------------------------- END --    
-          -- DEBD [D] (col4|row2+N) -------------------------- START --
-          <div id="create-col4-cell"></div>
-          -- DEBD [D] (col4|row2+N) -------------------------- END --    
-          -- ROW 2+N ---------------------------------------------- END --
+          <!-- Info row  ------------------------------------------------- END --
+-->
+<!--    code to manually build an info row ------------------------------- END -->
+<!--
         </div>
 -->
-        <!-- logic for building the grid manually (obsolete) ------------- END -->
       </div>
       <!-- content ---------------------------------------------------------------------- END -->
 
